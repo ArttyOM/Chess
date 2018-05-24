@@ -42,28 +42,37 @@ public class BoardManager : MonoBehaviour, IManager {
         }
     }
 
-	void Awake ()
+    RectTransform boardRectTransform;
+
+    void Awake ()
     {
+        //Debug.Log(Screen.height);
+        //шахматное поле - всегда квадратное
+
+        UpdateBoardSize(Screen.height);
+
         //генерим поле
         //А1 (0,0) - черное поле, A2(1,0), B1(0,1) - белые поля
         //Т.е. сумма индексов четная - поле четное, в противном случае белое
-        GameObject tempObj;
-        GameObject tempPivotObj; //вспомогательный объект для структуризации поля, можно и без него в кучу сваливать
-        for (int i = 0; i < 8; i++)
-        {
-            tempPivotObj = new GameObject();
-            tempPivotObj.name = (i+1).ToString();
-            tempPivotObj.AddComponent<RectTransform>();
-            tempPivotObj.transform.SetParent(_boardTransform);
-            //for (LatVector j = 0; (int)j < 8; j++)
-            //{
-            //    if ((i + (int)j) % 2 == 0) tempObj = Instantiate(_blackCell, _boardTransform); //tempPivotObj.transform); 
-            //    else tempObj = Instantiate(_whiteCell, _boardTransform);//tempPivotObj.transform);
-            //    tempObj.name = (j).ToString() + (i+1).ToString();
-            //}
-        }
-        
-	}
+        //GameObject tempObj;
+        //for (int i = 0; i < 8; i++)
+        //{
+        //    for (LatVector j = 0; (int)j < 8; j++)
+        //    {
+        //        if ((i + (int)j) % 2 == 0) tempObj = Instantiate(_blackCell, _boardTransform);
+        //        else tempObj = Instantiate(_whiteCell, _boardTransform);
+        //        tempObj.name = (j).ToString() + (i + 1).ToString();
+        //    }
+        //}
 
+    }
+
+    void UpdateBoardSize(float size)
+    {
+        Vector2 boardSize = new Vector2(size, size);
+        boardRectTransform = _boardTransform.GetComponent<RectTransform>();
+        boardRectTransform.sizeDelta = boardSize;
+        boardRectTransform.position = new Vector2(size / 2, size / 2);
+    }
 
 }
