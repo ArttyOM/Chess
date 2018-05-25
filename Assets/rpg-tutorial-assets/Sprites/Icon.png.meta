@@ -1,9 +1,10 @@
 fileFormatVersion: 2
 guid: e2f5d09eedcdd7e4eb5f632bc13eacfa
-timeCreated: 1527027453
+timeCreated: 1527248737
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Icon_0
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -42,11 +43,11 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 25, y: 25, z: 25, w: 25}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 300
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -98,9 +99,54 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
-    physicsShape: []
+    sprites:
+    - serializedVersion: 2
+      name: Icon_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 242
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline:
+    - - {x: 123, y: -116}
+      - {x: 123, y: -114}
+      - {x: 124, y: -113}
+      - {x: 124, y: 109}
+      - {x: 122, y: 112}
+      - {x: 122, y: 116}
+      - {x: 120, y: 118}
+      - {x: 115, y: 118}
+      - {x: 111, y: 120}
+      - {x: -110, y: 120}
+      - {x: -115.978584, y: 116.02141}
+      - {x: -119, y: 111}
+      - {x: -121, y: 107}
+      - {x: -121, y: -111}
+      - {x: -122, y: -112}
+      - {x: -122, y: -117}
+      - {x: -118, y: -119}
+      - {x: -118, y: -120}
+      - {x: -116, y: -122}
+      - {x: -115, y: -124}
+      - {x: -110, y: -128}
+      - {x: 114, y: -128}
+      - {x: 114, y: -127}
+      - {x: 118, y: -125}
+      - {x: 119, y: -120}
+    physicsShape:
+    - - {x: -116, y: 120}
+      - {x: -120, y: 117}
+      - {x: -120, y: -111}
+      - {x: -119, y: -126}
+      - {x: 121, y: -126}
+      - {x: 121, y: 120}
   spritePackingTag: 
   userData: 
   assetBundleName: 

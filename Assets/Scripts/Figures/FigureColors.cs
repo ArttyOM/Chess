@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IManager
+namespace FigureColors
 {
-    ManagerStatus status { get; }
-    void Startup();
-
+    public enum FigureColor {white,black} 
 }
