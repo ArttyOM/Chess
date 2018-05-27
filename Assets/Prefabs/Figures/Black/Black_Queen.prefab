@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 224457924330545098}
   - component: {fileID: 222851506469524996}
   - component: {fileID: 114665601000027358}
+  - component: {fileID: 114673082985631488}
   m_Layer: 5
-  m_Name: Black_Bishop
+  m_Name: Black_Queen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +48,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300016, guid: faf1c0e1dc8fde7498f0b6a60fdcddfe, type: 3}
+  m_Sprite: {fileID: 21300014, guid: faf1c0e1dc8fde7498f0b6a60fdcddfe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -55,6 +56,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114673082985631488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1881685402342874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aba913f14981ba4cb32e2aedfdde2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222851506469524996
 CanvasRenderer:
   m_ObjectHideFlags: 1

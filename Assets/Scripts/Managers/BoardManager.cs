@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// формирование доски и клеток
+/// TODO будет время: оформить в синглтон - доска в игре всегда одна, а глобальный доступ к ней не помешает
+/// </summary>
 public class BoardManager : MonoBehaviour, IManager {
-    enum LatVector {A,B,C,D,E,F,G,H}
+    public enum LatVector {A,B,C,D,E,F,G,H}
     [SerializeField]
     private GameObject _whiteCell, _blackCell;
     public GameObject WhiteCell
@@ -38,7 +41,7 @@ public class BoardManager : MonoBehaviour, IManager {
                     _boardTransform = value;
                 else Debug.Log("Значение не было изменено: у объекта не найден компонент GridLayout");
             }
-            else Debug.Log("Значение не было изменено");
+            else Debug.Log("Значение не было изменено: попытка присваивания null");
         }
     }
 
@@ -48,7 +51,7 @@ public class BoardManager : MonoBehaviour, IManager {
     public static GameObject[,] cells = new GameObject[8, 8];
 
 
-    public ManagerStatus status { get; set; } //в идеале весь класс как синглтон оформить - доска в игре всегда одна
+    public ManagerStatus status { get; set; }
     public void Startup ()
     {
         status = ManagerStatus.Initializing;
@@ -71,8 +74,9 @@ public class BoardManager : MonoBehaviour, IManager {
             {
                 if ((i + (int)j) % 2 == 0) tempObj = Instantiate(_blackCell, _boardTransform);
                 else tempObj = Instantiate(_whiteCell, _boardTransform);
-                tempObj.name = (j).ToString() + (i + 1).ToString();
-                cells[i, (int)j] = tempObj;
+                tempObj.name = (j).ToString() + (i + 1).ToString(); //B3 эквивалентно (2,4): 
+                tempObj.GetComponent<CellCoords>().coords = new Vector2Int((int)j, i);
+                cells[i, (int)j] = tempObj; // B3 соответствует cells[2, B]
             } 
         }
 
@@ -98,7 +102,7 @@ public class BoardManager : MonoBehaviour, IManager {
             OnBoardSizeUpdate();
             OnCellSizeUpdate();
             //yield return null;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(GlobalFields.MyLazyBD.viewUpdatePeriod);
             //вызов SetBoardSize раз в секунду
             //для наглядности
         }

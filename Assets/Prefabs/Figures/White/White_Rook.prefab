@@ -9,31 +9,32 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1881685402342874}
+  m_RootGameObject: {fileID: 1629831357090430}
   m_IsPrefabParent: 1
---- !u!1 &1881685402342874
+--- !u!1 &1629831357090430
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 224457924330545098}
-  - component: {fileID: 222851506469524996}
-  - component: {fileID: 114665601000027358}
+  - component: {fileID: 224579316386890478}
+  - component: {fileID: 222726922744957042}
+  - component: {fileID: 114133684322380464}
+  - component: {fileID: 114301017760697804}
   m_Layer: 5
-  m_Name: Black_Knight
+  m_Name: White_Rook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114665601000027358
+--- !u!114 &114133684322380464
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1881685402342874}
+  m_GameObject: {fileID: 1629831357090430}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -47,7 +48,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300018, guid: faf1c0e1dc8fde7498f0b6a60fdcddfe, type: 3}
+  m_Sprite: {fileID: 21300008, guid: faf1c0e1dc8fde7498f0b6a60fdcddfe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -55,18 +56,29 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!222 &222851506469524996
+--- !u!114 &114301017760697804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1629831357090430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742a2434fa50d7f42a85ca80cca6e07d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!222 &222726922744957042
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1881685402342874}
---- !u!224 &224457924330545098
+  m_GameObject: {fileID: 1629831357090430}
+--- !u!224 &224579316386890478
 RectTransform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1881685402342874}
+  m_GameObject: {fileID: 1629831357090430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}

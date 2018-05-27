@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 224375194783579068}
   - component: {fileID: 222720305499641296}
   - component: {fileID: 114953867423888700}
+  - component: {fileID: 114202480347836932}
   m_Layer: 5
   m_Name: WhiteCell
   m_TagString: Untagged
@@ -28,6 +29,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114202480347836932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1681047715992444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14669b0a4b13a904ea532b65e2fe74db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coords: {x: 0, y: 0}
 --- !u!114 &114953867423888700
 MonoBehaviour:
   m_ObjectHideFlags: 1

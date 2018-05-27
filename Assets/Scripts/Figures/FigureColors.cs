@@ -4,5 +4,5 @@ using UnityEngine;
 
 namespace FigureColors
 {
-    public enum FigureColor {white,black} 
+    public enum FigureColor { notСonfigured, white,black} 
 }

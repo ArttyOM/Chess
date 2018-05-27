@@ -1,25 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FigureColors;
 
+/// <summary>
+/// Класс, запускающий остальные менеджеры
+/// Также создает 2 экземпляра контроллера игроков 
+/// (помещает внутрь собственной иерархии)
+/// </summary>
 [RequireComponent(typeof (BoardManager))]
 [RequireComponent(typeof(FiguresInitializeManager))]
-
 public class Managers : MonoBehaviour {
 
 	public static BoardManager BoardManagerObj { get; private set; }
-    public static FiguresInitializeManager FiguresInitializeManagerObj { get; set; } 
+    public static FiguresInitializeManager FiguresInitializeManagerObj { get; set; }
+    
+    public static PlayerController WhitePlayer { get; private set; }
+    public static PlayerController BlackPlayer { get; private set; }
 
-	private List<IManager> _startSequence;
+    private List<IManager> _startSequence;
 
 	void Awake(){
+        
         BoardManagerObj = GetComponent<BoardManager>();
         FiguresInitializeManagerObj = GetComponent<FiguresInitializeManager>();
         FiguresInitializeManagerObj.BoardMgr = BoardManagerObj;
 
-		_startSequence = new List<IManager>();
+        GameObject whitePlayerObj = new GameObject("WhitePlayer");
+        whitePlayerObj.transform.SetParent(this.transform);
+        WhitePlayer = PlayerController.CreateComponent(whitePlayerObj, FigureColor.white);
+
+        GameObject blackPlayerObj = new GameObject("BlackPlayer");
+        blackPlayerObj.transform.SetParent(this.transform);
+        BlackPlayer = PlayerController.CreateComponent(blackPlayerObj, FigureColor.black);
+        //создали в иерархии менеджеров 2 объекта с контроллерами игроков
+
+        _startSequence = new List<IManager>();
 		_startSequence.Add(BoardManagerObj);
         _startSequence.Add(FiguresInitializeManagerObj);
+        _startSequence.Add(WhitePlayer);
+        _startSequence.Add(BlackPlayer);
 		StartCoroutine(StartupManagers());
 	}
 
