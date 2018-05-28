@@ -8,38 +8,23 @@ using UnityEngine.EventSystems;
 public class Knight : AbstractFigure
 {
 
-    public RectTransform FigureRectTransform { get; set; }
-    private FigureColor _figColor;
-    public FigureColor FigureColor
-    {
-        get { return _figColor; }
-        set { _figColor = value; }
-    }
-
-    public void Awake()
-    {
-        FigureRectTransform = this.gameObject.GetComponent<RectTransform>();
-
-    }
-
-    public override void OnAttacked()
-    {
-        Destroy(this.gameObject);
-    }
-    public override void Attack()
-    {
-
-    }
-    public override void Move()
-    {
-
-    }
     public override List<Vector2Int> PossibilityToMove()
     {
-        return null;
+        List<Vector2Int> possibleMoves = new List<Vector2Int>();
+        if ((coords.x + 2 <= 7)&&(coords.y+1<=7)) possibleMoves.Add(new Vector2Int(coords.x + 2, coords.y + 1));//x- буквы, у - цифры
+        if ((coords.x + 2 <= 7) && (coords.y -1  >= 0)) possibleMoves.Add(new Vector2Int(coords.x + 2, coords.y - 1));
+        if ((coords.x + 1 <= 7) && (coords.y + 2 <= 7)) possibleMoves.Add(new Vector2Int(coords.x + 1, coords.y + 2));
+        if ((coords.x + 1 <= 7) && (coords.y - 2 >= 0)) possibleMoves.Add(new Vector2Int(coords.x + 1, coords.y - 2));
+
+        if ((coords.x - 2 >= 0) && (coords.y + 1 <= 7)) possibleMoves.Add(new Vector2Int(coords.x - 2, coords.y + 1));//x- буквы, у - цифры
+        if ((coords.x - 2 >= 0) && (coords.y - 1 >= 0)) possibleMoves.Add(new Vector2Int(coords.x - 2, coords.y - 1));
+        if ((coords.x - 1 >= 0) && (coords.y + 2 <= 7)) possibleMoves.Add(new Vector2Int(coords.x - 1, coords.y + 2));
+        if ((coords.x - 1 >= 0) && (coords.y - 2 >= 0)) possibleMoves.Add(new Vector2Int(coords.x - 1, coords.y - 2));
+
+        return possibleMoves;
     }
     public override List<Vector2Int> PossibilityToAttack()
     {
-        return null;
+        return PossibilityToMove(); //конь движется также, как и атакует
     }
 }

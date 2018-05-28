@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using FigureColors;
 /// <summary>
 /// Начальная расстановка фигур
 /// </summary>
@@ -34,14 +34,12 @@ public class FiguresInitializeManager : MonoBehaviour , IManager{
         {
             yield return null;
         }
+        //как только менеджер доски создал ячейки, можно приступать к расстановке фигур
         status = ManagerStatus.Started;
         Debug.Log("FigureInitializeManager started!");
 
         SetFigures();
 
-
-
-        //как только менеджер доски создал ячейки, можно приступать к расстановке фигур
 
     }
 
@@ -58,11 +56,11 @@ public class FiguresInitializeManager : MonoBehaviour , IManager{
 
         for (int i = 0; i < 8; i++)
         {
-            CreateAndSetFigure(whitePawn, new Vector2Int(i, 1)); //2я строка
-            CreateAndSetFigure(whiteFiguresLine[i], new Vector2Int(i, 0)); //1я строка
+            CreateAndSetFigure(whitePawn, new Vector2Int(i, 1), FigureColor.white); //2я строка
+            CreateAndSetFigure(whiteFiguresLine[i], new Vector2Int(i, 0), FigureColor.white); //1я строка
 
-            CreateAndSetFigure(blackPawn, new Vector2Int(i, 6));
-            CreateAndSetFigure(blackFiguresLine[i], new Vector2Int(i, 7));
+            CreateAndSetFigure(blackPawn, new Vector2Int(i, 6), FigureColor.black);
+            CreateAndSetFigure(blackFiguresLine[i], new Vector2Int(i, 7), FigureColor.black);
             //tempObj = Instantiate(whitePawn, BoardManager.cells[1, i].transform);
             //ObjRectTransform = tempObj.GetComponent<RectTransform>();
             //StartCoroutine(SetSize(ObjRectTransform));
@@ -87,14 +85,16 @@ public class FiguresInitializeManager : MonoBehaviour , IManager{
     /// </summary>
     /// <param name="figurePrefab">ссылка на шаблон фигуры</param>
     /// <param name="coords">позиция на доске, куда нужно устанавливать фигуру</param>
-    private void CreateAndSetFigure(GameObject figurePrefab, Vector2Int coords)
+    private void CreateAndSetFigure(GameObject figurePrefab, Vector2Int coords, FigureColors.FigureColor owner)
     {
         GameObject tempObj;
         RectTransform ObjRectTransform;
 
         // B3 соответствует cells[2, B]
         tempObj = Instantiate(figurePrefab, BoardManager.cells[coords.y, coords.x].transform);
+ 
         tempObj.GetComponent<AbstractFigure>().coords = coords;//не забываем проставить координаты новой фигуры
+        tempObj.GetComponent<AbstractFigure>().FigureColor = owner;
         ObjRectTransform = tempObj.GetComponent<RectTransform>();
         StartCoroutine(SetSize(ObjRectTransform));
         //GridLayout-у требуется время, чтобы получить корректный rect
@@ -102,7 +102,7 @@ public class FiguresInitializeManager : MonoBehaviour , IManager{
 
     IEnumerator SetSize(RectTransform rectTransform)
     {
-        do
+        while (rectTransform != null)
         {
             RectTransform parentRectTransform = rectTransform.parent.GetComponent<RectTransform>();
             //yield return null;
@@ -114,6 +114,5 @@ public class FiguresInitializeManager : MonoBehaviour , IManager{
             yield return new WaitForSeconds(GlobalFields.MyLazyBD.viewUpdatePeriod);
             //т.к. BoardManager адаптирует игровое поле под размер окна, размер фигур также должен адаптироваться
         }
-        while (true);
     }
 }

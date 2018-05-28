@@ -13,5 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementHighliter: {fileID: 1705547554089328, guid: ee7766864b87c2047a12e6d43f22bb9d,
     type: 2}
+  attackHighliter: {fileID: 1705547554089328, guid: c07c5198ccf9aa24d9bdfe5b6907d862,
+    type: 2}
   viewUpdatePeriod: 1
   draggedFigureAlpha: 0.3

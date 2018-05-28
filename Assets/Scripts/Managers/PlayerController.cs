@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour, IManager
         return playerController;
     }
 
-    public static FigureColor turn { get; private set; } //чей сейчас ход
+    public static FigureColor Turn { get; private set; } //чей сейчас ход
 
 
     private FigureColor _playerColor = FigureColor.notСonfigured;
@@ -35,19 +35,21 @@ public class PlayerController : MonoBehaviour, IManager
     public ManagerStatus status { get; set; }
     public void Startup()
     {
-        turn = FigureColor.white;//по умолчанию первыми ходят белые
+        Turn = FigureColor.white;//по умолчанию первыми ходят белые
         Debug.Log(PlayerColor.ToString()+" player controller starting...");
         
         status = ManagerStatus.Started;
     }
-    private void EndTurn()
+    public static void EndTurn()
     {
-        switch (turn)
+        switch (Turn)
         {
-            case FigureColor.white: turn = FigureColor.black; break;
-            case FigureColor.black: turn = FigureColor.white; break;
+            case FigureColor.white: Turn = FigureColor.black; break;
+            case FigureColor.black: Turn = FigureColor.white; break;
             default: break;
         }
+
+        Debug.Log("Сейчас ход " + Turn);
       
     }
 
