@@ -122,9 +122,10 @@ public class Pawn : AbstractFigure
 
         if (isNotMovedYet) isNotMovedYet = false;
 
+        PawnUpgradeRequest();
+
         PlayerController.EndTurn();
     }
-
     public override void Attack(GameObject hitObject)
     {
         if (_specialHighliter != null && 
@@ -147,11 +148,64 @@ public class Pawn : AbstractFigure
         transform.SetParent(hitObject.transform, false);
         this.coords = hitObject.GetComponent<CellCoords>().coords;//TODO null check
 
+        PawnUpgradeRequest();
+
         PlayerController.EndTurn();
     }
+
+    /// <summary>
+    /// В случае, если пешка доходит до противоположного конца, запросить её апгрейд
+    /// Вызывать до передачи хода
+    /// </summary>
+    private void PawnUpgradeRequest()
+    {
+        if ((this.coords.y == 0) || (this.coords.y == 7))
+        {
+            AbstractFigure.isPawnUpgrading = true;
+            Messenger.Broadcast("PawnUpgradeRequest");
+            //как только пешка сделала запрос апгрейда, она начинает слушать ответ
+            Messenger<GameObject>.AddListener("PawnUpgradeResponse", Upgrade);
+        }
+
+    }
+
+    void Upgrade(GameObject prefab)
+    {
+        AbstractFigure.isPawnUpgrading = false; 
+        //manager.CreateAndSetFigure(prefab, this.coords, this.FigureColor);
+        GameObject tObj = Instantiate(prefab, this.transform.parent);
+        AbstractFigure newFigure = tObj.GetComponent<AbstractFigure>();
+        newFigure.FigureColor = this.FigureColor;
+        newFigure.coords = this.coords;
+        StartCoroutine(SetSizeForANewFigure(tObj.GetComponent<RectTransform>()));
+
+        Messenger<GameObject>.RemoveListener("PawnUpgradeResponse", Upgrade);
+        Destroy(this.gameObject);
+    }
+
+    IEnumerator SetSizeForANewFigure(RectTransform rectTransform)
+    {
+        while (rectTransform != null)
+        {
+            RectTransform parentRectTransform = rectTransform.parent.GetComponent<RectTransform>();
+            //yield return null;
+            //yield return new WaitUntil(() => parentRectTransform.rect.width != 0);
+            //TODO: убрать хардкод
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0.7f*parentRectTransform.rect.width);
+            rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 0.7f*parentRectTransform.rect.height);
+
+
+
+            yield return null;
+            //yield return new WaitForSeconds(GlobalFields.MyLazyBD.viewUpdatePeriod);
+        }
+    }
+
     public override void OnEndDrag(PointerEventData eventData)
     {
         base.OnEndDrag(eventData);
         Destroy(_specialHighliter);
     }
+
+
 }

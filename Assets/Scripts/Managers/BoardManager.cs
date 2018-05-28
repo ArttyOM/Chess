@@ -7,7 +7,11 @@ using UnityEngine.UI;
 /// TODO будет время: оформить в синглтон - доска в игре всегда одна, а глобальный доступ к ней не помешает
 /// </summary>
 public class BoardManager : MonoBehaviour, IManager {
-    public enum LatVector {A,B,C,D,E,F,G,H}
+    public enum LatVector { A, B, C, D, E, F, G, H }
+
+    public static Canvas canvas { get; set; }
+
+
     [SerializeField]
     private GameObject _whiteCell, _blackCell;
     public GameObject WhiteCell
@@ -44,6 +48,7 @@ public class BoardManager : MonoBehaviour, IManager {
             else Debug.Log("Значение не было изменено: попытка присваивания null");
         }
     }
+    
 
     private RectTransform _boardRectTransform;
     private RectTransform _boardRectTransformPivot;
@@ -62,7 +67,7 @@ public class BoardManager : MonoBehaviour, IManager {
         _boardRectTransform= _boardTransform.GetComponent<RectTransform>();//TODO:null-check
         _boardRectTransformPivot = _boardTransform.parent.GetComponent<RectTransform>();
 
-        
+         canvas = FindInParents<Canvas>(gameObject);
 
         //генерим поле
         //А1(0, 0) - черное поле, A2(1, 0), B1(0, 1) - белые поля
@@ -166,6 +171,23 @@ public class BoardManager : MonoBehaviour, IManager {
         //достаточно гарантировать, что у pivot-a max.x-min.x = max.y-min.y
         //if (_boardRectTransform.SetSizeWithCurrentAnchors)
 
-
     }
+
+    static public T FindInParents<T>(GameObject go) where T : Component
+    {
+        if (go == null) return null;
+        var comp = go.GetComponent<T>();
+
+        if (comp != null)
+            return comp;
+
+        Transform t = go.transform.parent;
+        while (t != null && comp == null)
+        {
+            comp = t.gameObject.GetComponent<T>();
+            t = t.parent;
+        }
+        return comp;
+    }
+
 }

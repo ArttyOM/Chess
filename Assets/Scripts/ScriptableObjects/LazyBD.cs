@@ -12,8 +12,14 @@ public class LazyBD : ScriptableObject
     public GameObject movementHighliter;
     [SerializeField]
     public GameObject attackHighliter;
+
     [SerializeField]
-    public float viewUpdatePeriod = 1f;
+    public GameObject whiteUpgrader;//набор кнопок для апгейда белой пешки
+    [SerializeField]
+    public GameObject blackUpgrader;//набор кнопок для апгрейда черной пешки
+
+    [SerializeField]
+    public float viewUpdatePeriod = 1f;//период изменения размеров поля
     [SerializeField]
     public float draggedFigureAlpha = 0.3f;
 

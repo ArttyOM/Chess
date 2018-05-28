@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public abstract class AbstractFigure : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-
+    protected static bool isPawnUpgrading=false;
     //Transform FigureTransform { get; set; }
     public FigureColor FigureColor { get; set; }//у любой фигуры есть цвет
     public Vector2Int coords; // у любой фигуры есть координаты
@@ -144,9 +144,11 @@ public abstract class AbstractFigure : MonoBehaviour, IBeginDragHandler, IDragHa
         //может ли игрок этого цвета перемещать фигуру?
         if (this.FigureColor != PlayerController.Turn) return;
 
-        //находится ли король под шахом и может ли эта фигура его устранить?
+        if (AbstractFigure.isPawnUpgrading) return;//в процессе выбора апгрейда пешки другой игрок не может ходить 
 
-        //приведет ли перемещение фигуры к угрозе для короля?
+        //TODOнаходится ли король под шахом и может ли эта фигура его устранить?
+
+        //TODOприведет ли перемещение фигуры к угрозе для короля?
 
         possibilityToMove.Clear();
         //Debug.Log(coords.x + " " + coords.y);
@@ -239,15 +241,13 @@ public abstract class AbstractFigure : MonoBehaviour, IBeginDragHandler, IDragHa
     EventSystem m_EventSystem;
     void Start()
     {
+        
         //Fetch the Raycaster from the GameObject (the Canvas)
         m_Raycaster = GetComponentInParent<GraphicRaycaster>();
         //Fetch the Event System from the Scene
         m_EventSystem = GetComponentInParent<EventSystem>();
     }
 
-
-    
-    
     static public T FindInParents<T>(GameObject go) where T : Component
     {
         if (go == null) return null;
@@ -275,6 +275,8 @@ public abstract class AbstractFigure : MonoBehaviour, IBeginDragHandler, IDragHa
             //TODO: убрать хардкод
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,  parentRectTransform.rect.width);
             rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, parentRectTransform.rect.height);
+
+
 
             yield return null;
             //yield return new WaitForSeconds(GlobalFields.MyLazyBD.viewUpdatePeriod);

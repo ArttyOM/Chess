@@ -15,5 +15,8 @@ MonoBehaviour:
     type: 2}
   attackHighliter: {fileID: 1705547554089328, guid: c07c5198ccf9aa24d9bdfe5b6907d862,
     type: 2}
+  whiteUpgrader: {fileID: 1581283999654648, guid: d947715f48927264b927f646ba2627a8,
+    type: 2}
+  blackUpgrader: {fileID: 0}
   viewUpdatePeriod: 1
   draggedFigureAlpha: 0.3

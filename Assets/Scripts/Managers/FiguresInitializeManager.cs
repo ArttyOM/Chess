@@ -11,10 +11,10 @@ public class FiguresInitializeManager : MonoBehaviour , IManager{
     //можно было через ScriptableObject сделать
     //префабы белых
     [SerializeField]
-    private GameObject whiteKing, whiteQueen, whiteBishop, whiteKnight, whiteRook, whitePawn;
+    public GameObject whiteKing, whiteQueen, whiteBishop, whiteKnight, whiteRook, whitePawn;
     //префабы черных
     [SerializeField]
-    private GameObject blackKing, blackQueen, blackBishop, blackKnight, blackRook, blackPawn;
+    public GameObject blackKing, blackQueen, blackBishop, blackKnight, blackRook, blackPawn;
 
 
     public ManagerStatus status { get; set; }
@@ -85,7 +85,7 @@ public class FiguresInitializeManager : MonoBehaviour , IManager{
     /// </summary>
     /// <param name="figurePrefab">ссылка на шаблон фигуры</param>
     /// <param name="coords">позиция на доске, куда нужно устанавливать фигуру</param>
-    private void CreateAndSetFigure(GameObject figurePrefab, Vector2Int coords, FigureColors.FigureColor owner)
+    public void CreateAndSetFigure(GameObject figurePrefab, Vector2Int coords, FigureColors.FigureColor owner)
     {
         GameObject tempObj;
         RectTransform ObjRectTransform;

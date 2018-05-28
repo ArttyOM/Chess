@@ -10,6 +10,7 @@ using FigureColors;
 /// </summary>
 [RequireComponent(typeof (BoardManager))]
 [RequireComponent(typeof(FiguresInitializeManager))]
+[RequireComponent(typeof(PawnUpgradeManager))]
 public class Managers : MonoBehaviour {
 
 	public static BoardManager BoardManagerObj { get; private set; }
@@ -17,6 +18,8 @@ public class Managers : MonoBehaviour {
     
     public static PlayerController WhitePlayer { get; private set; }
     public static PlayerController BlackPlayer { get; private set; }
+
+    public static PawnUpgradeManager UpgradeManger { get; private set; }
 
     private List<IManager> _startSequence;
 
@@ -35,11 +38,14 @@ public class Managers : MonoBehaviour {
         BlackPlayer = PlayerController.CreateComponent(blackPlayerObj, FigureColor.black);
         //создали в иерархии менеджеров 2 объекта с контроллерами игроков
 
+        UpgradeManger = GetComponent<PawnUpgradeManager>();
+
         _startSequence = new List<IManager>();
 		_startSequence.Add(BoardManagerObj);
         _startSequence.Add(FiguresInitializeManagerObj);
         _startSequence.Add(WhitePlayer);
         _startSequence.Add(BlackPlayer);
+        _startSequence.Add(UpgradeManger);
 		StartCoroutine(StartupManagers());
 	}
 
