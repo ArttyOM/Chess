@@ -98,10 +98,12 @@ public class Pawn : AbstractFigure
 
     public override void Move(GameObject hitObject)
     {
-        _specialAttackTarget = null;
         if (hitObject == this.gameObject) return;//если кликнули сами на себя - ничего не происходит
+
         if ((hitObject.transform.childCount == 0) || (hitObject.GetComponentInChildren<AbstractFigure>() != null)) return;
         //прервать функцию при попытке ходьбы на другую фигуру - для атаки есть метод Attack
+
+        _specialAttackTarget = null;
 
         //при ходьбе на 2 клетки эта пешка становится целью для спецатаки
         if ((this.coords.y + 2 == hitObject.GetComponent<CellCoords>().coords.y) ||//для белых
@@ -132,20 +134,13 @@ public class Pawn : AbstractFigure
             //Debug.Log("Таргет в прицеле");
         }
 
-        _specialAttackTarget = null;
         if (hitObject == this.gameObject) return;//если кликнули сами на себя - ничего не происходит
 
-        //if 
-        /*условия для применения спецатаки
-        Атакующая фигура - пешка
-        Не прошел полуход после хода на 2 клетки
-        Координата Y для белой атакующей пешки = 4, для черной атакующей пешки = 3
-        Координата Y черной атакованной пешки = 4, для белой атакованной пешки = 3
-        Координата X для атакованной пешки = +1 или -1
-        */
         if (hitObject.transform.childCount <= 1) return;//1 потомок у недоступных для атаки фигур и у клеток, доступных для Move
 
         if (hitObject.GetComponentInChildren<AbstractFigure>() == null) return;//прервать, если в потомках нет фигур
+
+        _specialAttackTarget = null;
 
         hitObject.GetComponentInChildren<AbstractFigure>().OnAttacked();//вызовем у атакованной фигуры соответствующий метод
 

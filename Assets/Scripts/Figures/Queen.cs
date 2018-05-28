@@ -20,7 +20,7 @@ public class Queen : AbstractFigure
         List<Vector2Int> possibleAttacks = new List<Vector2Int>();
 
         int tx, ty;
-        for (int i = 1; i < 7; i++)//вправо вверх
+        for (int i = 1; i <= 7; i++)//вправо вверх
         {
             tx = coords.x + i;
             ty = coords.y + i;
@@ -38,7 +38,7 @@ public class Queen : AbstractFigure
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
 
-        for (int i = 1; i < 7; i++)//влево вверх
+        for (int i = 1; i <= 7; i++)//влево вверх
         {
             tx = coords.x - i;
             ty = coords.y + i;
@@ -56,7 +56,7 @@ public class Queen : AbstractFigure
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
 
-        for (int i = 1; i < 7; i++)//вправо вниз
+        for (int i = 1; i <= 7; i++)//вправо вниз
         {
             tx = coords.x + i;
             ty = coords.y - i;
@@ -74,7 +74,7 @@ public class Queen : AbstractFigure
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
 
-        for (int i = 1; i < 7; i++)//влево вниз
+        for (int i = 1; i <= 7; i++)//влево вниз
         {
             tx = coords.x - i;
             ty = coords.y - i;
@@ -91,7 +91,7 @@ public class Queen : AbstractFigure
             }
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
-        for (int i = 1; i < 7; i++)//вправо 
+        for (int i = 1; i <= 7; i++)//вправо 
         {
             tx = coords.x + i;
             ty = coords.y;
@@ -109,7 +109,7 @@ public class Queen : AbstractFigure
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
 
-        for (int i = 1; i < 7; i++)//влево 
+        for (int i = 1; i <= 7; i++)//влево 
         {
             tx = coords.x - i;
             ty = coords.y;
@@ -127,7 +127,7 @@ public class Queen : AbstractFigure
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
 
-        for (int i = 1; i < 7; i++)//вниз
+        for (int i = 1; i <= 7; i++)//вниз
         {
             tx = coords.x;
             ty = coords.y - i;
@@ -145,7 +145,7 @@ public class Queen : AbstractFigure
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
 
-        for (int i = 1; i < 7; i++)//вверх
+        for (int i = 1; i <= 7; i++)//вверх
         {
             tx = coords.x;
             ty = coords.y + i;

@@ -31,7 +31,7 @@ public class Bishop : AbstractFigure
         List<Vector2Int> possibleAttacks = new List<Vector2Int>();
 
         int tx, ty;
-        for (int i = 1; i<7; i++)//вправо вверх
+        for (int i = 1; i<=7; i++)//вправо вверх
         {
             tx = coords.x + i;
             ty = coords.y + i;
@@ -49,7 +49,7 @@ public class Bishop : AbstractFigure
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
 
-        for (int i = 1; i < 7; i++)//влево вверх
+        for (int i = 1; i <= 7; i++)//влево вверх
         {
             tx = coords.x - i;
             ty = coords.y + i;
@@ -67,7 +67,7 @@ public class Bishop : AbstractFigure
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
 
-        for (int i = 1; i < 7; i++)//вправо вниз
+        for (int i = 1; i <= 7; i++)//вправо вниз
         {
             tx = coords.x + i;
             ty = coords.y - i;
@@ -85,7 +85,7 @@ public class Bishop : AbstractFigure
             else break;//прервать цикл, когда мы вышли за пределы хотя бы одной из координат
         }
 
-        for (int i = 1; i < 7; i++)//влево вниз
+        for (int i = 1; i <= 7; i++)//влево вниз
         {
             tx = coords.x - i;
             ty = coords.y - i;
